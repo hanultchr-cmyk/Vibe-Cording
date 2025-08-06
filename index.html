@@ -16,10 +16,9 @@
       font-family: "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", sans-serif;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       height: 100vh;
       margin: 0;
-      padding-top: 30px;
       transition: background-color 0.3s, color 0.3s;
     }
 
@@ -29,8 +28,7 @@
       border-radius: 20px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       text-align: center;
-      max-width: 500px;
-      width: 100%;
+      max-width: 400px;
       transition: background-color 0.3s;
     }
 
@@ -74,35 +72,6 @@
       background-color: #357ae8;
     }
 
-    .guestbook {
-      margin-top: 30px;
-      text-align: left;
-    }
-
-    .guestbook input,
-    .guestbook textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-
-    .guestbook-list {
-      list-style-type: none;
-      padding-left: 0;
-      margin-bottom: 20px;
-    }
-
-    .guestbook-list li {
-      background-color: rgba(77, 148, 255, 0.1);
-      margin: 5px 0;
-      padding: 10px;
-      border-radius: 8px;
-    }
-
     .dark-mode {
       --bg-color: #1e1e1e;
       --text-color: #f0f0f0;
@@ -121,18 +90,6 @@
       <button class="btn" onclick="sayHello()">인사하기</button>
       <button class="btn" onclick="toggleLanguage()" id="langBtn">English</button>
       <button class="btn" onclick="toggleMode()" id="modeBtn">🌙 다크 모드로 전환</button>
-    </div>
-
-    <div class="guestbook">
-      <h2>📖 방명록</h2>
-
-      <!-- 방명록 목록 -->
-      <ul id="guestbookList" class="guestbook-list"></ul>
-
-      <!-- 방명록 작성 폼 -->
-      <input type="text" id="guestName" placeholder="이름을 입력하세요" />
-      <textarea id="guestMessage" rows="3" placeholder="메시지를 입력하세요"></textarea>
-      <button class="btn" onclick="addGuestbookEntry()">방명록 남기기</button>
     </div>
   </div>
 
@@ -176,45 +133,6 @@
         ? "☀️ 라이트 모드로 전환"
         : "🌙 다크 모드로 전환";
     }
-
-    function addGuestbookEntry() {
-      const name = document.getElementById("guestName").value.trim();
-      const message = document.getElementById("guestMessage").value.trim();
-      const list = document.getElementById("guestbookList");
-
-      if (!name || !message) {
-        alert("이름과 메시지를 모두 입력해주세요.");
-        return;
-      }
-
-      const entry = { name, message };
-      const entries = JSON.parse(localStorage.getItem("guestbook") || "[]");
-      entries.unshift(entry); // 최신이 위로
-      localStorage.setItem("guestbook", JSON.stringify(entries));
-
-      renderGuestbook(entries);
-
-      // 입력 초기화
-      document.getElementById("guestName").value = "";
-      document.getElementById("guestMessage").value = "";
-    }
-
-    function renderGuestbook(entries) {
-      const list = document.getElementById("guestbookList");
-      list.innerHTML = ""; // 기존 내용 초기화
-
-      for (const entry of entries) {
-        const li = document.createElement("li");
-        li.innerHTML = `<strong>${entry.name}:</strong> ${entry.message}`;
-        list.appendChild(li);
-      }
-    }
-
-    // 페이지 로딩 시 방명록 불러오기
-    window.onload = function () {
-      const saved = JSON.parse(localStorage.getItem("guestbook") || "[]");
-      renderGuestbook(saved);
-    };
   </script>
 </body>
 </html>

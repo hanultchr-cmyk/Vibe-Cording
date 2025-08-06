@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>자기소개</title>
+  <style>
+    :root {
+      --bg-color: #e6f0ff;
+      --text-color: #000;
+      --box-bg: #fff;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      background-color: var(--box-bg);
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      transition: background-color 0.3s;
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 4px solid var(--bg-color);
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 8px 0;
+    }
+
+    .button-group {
+      margin-top: 20px;
+    }
+
+    .btn {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4d94ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #357ae8;
+    }
+
+    .dark-mode {
+      --bg-color: #1e1e1e;
+      --text-color: #f0f0f0;
+      --box-bg: #2c2c2c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="카피바라.webp" alt="프로필 사진" class="profile-img" />
+    <h1 id="title">안녕하세요! 임한울입니다</h1>
+    <p id="hobby"><strong>취미:</strong> 게임 개발, 독서, 산책</p>
+    <p id="contact"><strong>이메일:</strong> hwlim@gkn.co.kr</p>
+
+    <div class="button-group">
+      <button class="btn" onclick="sayHello()">인사하기</button>
+      <button class="btn" onclick="toggleLanguage()" id="langBtn">English</button>
+      <button class="btn" onclick="toggleMode()" id="modeBtn">🌙 다크 모드로 전환</button>
+    </div>
+  </div>
+
+  <script>
+    let isKorean = true;
+    let isDarkMode = false;
+
+    function sayHello() {
+      alert(isKorean ? "안녕하세요! 만나서 반가워요 :)" : "Hello! Nice to meet you :)");
+    }
+
+    function toggleLanguage() {
+      const title = document.getElementById("title");
+      const hobby = document.getElementById("hobby");
+      const contact = document.getElementById("contact");
+      const langBtn = document.getElementById("langBtn");
+
+      if (isKorean) {
+        title.textContent = "Hello! I'm Hanul Lim";
+        hobby.innerHTML = "<strong>Hobbies:</strong> Game development, reading, walking";
+        contact.innerHTML = "<strong>Email:</strong> hwlim@gkn.co.kr";
+        langBtn.textContent = "한국어";
+      } else {
+        title.textContent = "안녕하세요! 임한울입니다";
+        hobby.innerHTML = "<strong>취미:</strong> 게임 개발, 독서, 산책";
+        contact.innerHTML = "<strong>이메일:</strong> hwlim@gkn.co.kr";
+        langBtn.textContent = "English";
+      }
+
+      isKorean = !isKorean;
+    }
+
+    function toggleMode() {
+      const body = document.body;
+      const modeBtn = document.getElementById("modeBtn");
+
+      isDarkMode = !isDarkMode;
+      body.classList.toggle("dark-mode");
+
+      modeBtn.textContent = isDarkMode
+        ? "☀️ 라이트 모드로 전환"
+        : "🌙 다크 모드로 전환";
+    }
+  </script>
+</body>
+</html>
